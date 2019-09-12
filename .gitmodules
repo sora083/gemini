@@ -1,0 +1,3 @@
+[submodule "gemini-client"]
+	path = gemini-client
+	url = https://github.com/sora083/gemini-client.git
