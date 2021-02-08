@@ -14,7 +14,7 @@ public class CurrencyService {
     private final CurrencyRepository currencyRepository;
 
     public List<Currency> findAll() {
-        return currencyRepository.findAll();
+        return (List<Currency>) currencyRepository.findAll();
     }
 
     public Currency save(String name, String symbol) {
@@ -22,6 +22,6 @@ public class CurrencyService {
     }
 
     public void delete(Long id) {
-        currencyRepository.findById(id).ifPresent(currency -> currencyRepository.delete(currency));
+        currencyRepository.findById(id).ifPresent(currencyRepository::delete);
     }
 }
