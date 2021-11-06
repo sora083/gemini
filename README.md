@@ -5,9 +5,14 @@ http://localhost:8081/currency
 ```
 
 ### Preparation
-#### create DB
+#### boot DB container
 ```
-create database app;
+cd docker && docker-compose up -d
+```
+
+#### stop DB container
+```
+cd docker && docker-compose down
 ```
 
 ### reference

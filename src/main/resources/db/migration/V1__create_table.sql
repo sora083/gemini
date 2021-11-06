@@ -2,10 +2,10 @@
 DROP TABLE IF EXISTS currency;
 
 -- 簡易なマスタテーブル
-CREATE TABLE `currency` (
+CREATE TABLE currency (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(64) NOT NULL,
   `symbol` VARCHAR(10) NOT NULL,
   `amount` DECIMAL(40, 20),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
