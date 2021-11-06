@@ -1,6 +1,8 @@
 package com.sora.proto.gemini.domain;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
@@ -17,7 +19,7 @@ class CurrencyRepositoryTest {
   private CurrencyRepository currencyRepository;
 
   @Test
-  void test() {
+  void save() {
     String name = "TEST";
     String symbol = "TST";
 
