@@ -11,6 +11,30 @@ env:
   JDK_VERSION: 11
 
 jobs:
+  formatter:
+    runs-on: ubuntu-latest
+    outputs:
+      result: ${{ steps.check.outputs.result }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: ${{ env.JDK_VERSION }}
+          java-package: jdk
+          architecture: x64
+
+      - name: Format Code
+        run: |
+          ./gradlew googleJavaFormat
+          
+#      - name: Try Commit And Push
+#        run: |
+#          git commit -a -m [goJF]
+#          git push "https://${{secrets.TOKEN}}@github.com/${{github.repository}}.git" "$GITHUB_HEAD_REF"
+#        continue-on-error: true
   unit-test:
     runs-on: ubuntu-latest
     outputs:
@@ -19,14 +43,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-#      - name: Cache
-#        uses: actions/cache@v2
-#        with:
-#          path: |
-#            ~/.gradle/caches
-#            ~/.gradle/wrapper
-#          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
-#          restore-keys: ${{ runner.os }}-gradle-
+      - name: Cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+          restore-keys: ${{ runner.os }}-gradle-
 
       - name: Setup Java
         uses: actions/setup-java@v1

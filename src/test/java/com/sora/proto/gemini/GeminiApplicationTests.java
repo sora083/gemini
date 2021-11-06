@@ -7,7 +7,5 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class GeminiApplicationTests {
 
   @Test
-  public void contextLoads() {
-  }
-
+  public void contextLoads() {}
 }

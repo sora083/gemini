@@ -17,12 +17,14 @@ plugins {
     id 'io.spring.dependency-management' version "1.0.11.RELEASE"
     id 'org.springframework.boot' version "$springBootVersion"
     id 'org.flywaydb.flyway'version "$flywayVersion"
+    id 'com.github.sherter.google-java-format' version '0.9'
 }
 
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'jacoco'
+apply plugin: 'com.github.sherter.google-java-format'
 
 repositories {
     mavenCentral()
@@ -54,6 +56,11 @@ test {
     useJUnitPlatform {
 
     }
+}
+
+googleJavaFormat {
+    source = sourceSets*.allJava
+    include '**/*.java'
 }
 
 wrapper { gradleVersion = '7.2' }

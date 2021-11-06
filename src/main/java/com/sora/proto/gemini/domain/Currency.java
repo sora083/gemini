@@ -7,25 +7,16 @@ import org.springframework.data.annotation.Id;
 @Data
 public class Currency {
 
-  /**
-   * ID
-   */
-  @Id
-  private Long id;
+  /** ID */
+  @Id private Long id;
 
-  /**
-   * 仮想通貨名
-   */
+  /** 仮想通貨名 */
   private String name;
 
-  /**
-   * シンボル
-   */
+  /** シンボル */
   private String symbol;
 
-  /**
-   * 数量
-   */
+  /** 数量 */
   private BigDecimal amount;
 
   // TODO builderに変える
@@ -37,4 +28,3 @@ public class Currency {
     return currency;
   }
 }
-

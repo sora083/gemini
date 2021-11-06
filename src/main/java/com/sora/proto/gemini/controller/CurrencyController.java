@@ -48,11 +48,9 @@ public class CurrencyController {
   @Setter
   private static class CurrencyAddRequest {
 
-    @NotNull
-    private String name;
+    @NotNull private String name;
 
-    @NotNull
-    private String symbol;
+    @NotNull private String symbol;
   }
 
   @DeleteMapping("/{id}")
