@@ -1,0 +1,55 @@
+name: development lint & test workflow
+
+on:
+  push:
+    branches: [ develop ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+env:
+  JDK_VERSION: 11
+
+jobs:
+  unit-test:
+    runs-on: ubuntu-latest
+    outputs:
+      result: ${{ steps.check.outputs.result }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+#      - name: Cache
+#        uses: actions/cache@v2
+#        with:
+#          path: |
+#            ~/.gradle/caches
+#            ~/.gradle/wrapper
+#          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+#          restore-keys: ${{ runner.os }}-gradle-
+
+      - name: Setup Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: ${{ env.JDK_VERSION }}
+          java-package: jdk
+          architecture: x64
+
+      - name: Setup DB Container
+        run: |
+          docker-compose up -d
+        working-directory: docker
+
+      - name: Run unit test with Gradle
+        run: ./gradlew clean test
+
+      - name: Clean Up
+        if: always()
+        run: |
+          docker container ls -a
+          docker stop $(docker container ls -q)
+
+      - name: Check result
+        if: ${{ always() }}
+        id: check
+        run: echo "::set-output name=result::Unit Test ${{ (job.status == 'success' && ':white_check_mark:') || ':x:' }}"

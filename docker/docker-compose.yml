@@ -1,0 +1,14 @@
+version: '3.3'
+
+services:
+  db:
+    container_name: gemini-db
+    build:
+      context: gemini-db
+    ports:
+      - '23306:3306'
+    volumes:
+      - .:/gemini_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      TZ: Asia/Tokyo
